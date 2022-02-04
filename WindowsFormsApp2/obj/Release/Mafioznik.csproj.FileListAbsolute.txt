@@ -1,0 +1,11 @@
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe.config
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\WindowsFormsApp2.pdb
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Mafioznik.csproj.SuggestedBindingRedirects.cache
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Mafioznik.Form1.resources
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Mafioznik.csproj.GenerateResource.cache
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Mafioznik.csproj.CoreCompileInputs.cache
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.pdb
+C:\Users\gordy\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Mafioznik.csproj.AssemblyReference.cache
