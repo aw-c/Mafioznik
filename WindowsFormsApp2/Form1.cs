@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,7 +47,7 @@ namespace Mafioznik
                 int curnum;
                 while (true)
                 {
-                    int randp = rand.Next(1, persons);
+                    int randp = rand.Next(0, persons);
                     if (reserved.Contains(randp))
                         continue;
                     curnum = randp;
@@ -69,7 +70,7 @@ namespace Mafioznik
                 person.Name = i.ToString();
                 person.Size = new System.Drawing.Size(46, 18);
                 person.TabIndex = 0;
-                string pretext = i + 1 < 10 ? "0" + (i+1) : "10";
+                string pretext = i + 1 < 10 ? "0" + (i+1) : (i+1).ToString();
                 person.pretext = pretext + " - " + Core.RolesName[apersons[i]];
                 person.Text = "[" + person.folls + "/4] " + person.pretext;
                 person.MouseClick += AddFoll;
@@ -81,7 +82,8 @@ namespace Mafioznik
         }
         public void Print(object text)
         {
-            Debug.AppendText(text.ToString()+"\n");
+            var time = DateTime.Now;
+            Debug.AppendText("["+time.Hour+":"+time.Minute+"] "+text.ToString()+"\n");
             Debug.ScrollToCaret();
         }
         public void AddFoll(object sender, MouseEventArgs e)
@@ -92,8 +94,8 @@ namespace Mafioznik
             panel.Text = "[" + panel.folls + "/4] " + panel.pretext;
             int ou;
             int.TryParse(panel.Name, out ou);
-
-            Print("Игроку 0"+ (ou+1)+" был " + (panel.folls > lastv ? "начислен" : "снят") + " игровой фолл");
+            string playername = ou + 1 < 10 ? "0"+(ou+1) : (ou+1).ToString() ;
+            Print("Игроку "+playername+" был " + (panel.folls > lastv ? "начислен" : "снят") + " игровой фолл");
         }
 
         private void OnTimerStop(object sender, EventArgs e)
