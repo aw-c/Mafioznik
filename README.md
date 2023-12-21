@@ -2,4 +2,4 @@
 Mafioznik - Tool for Mafia WEB Game.
 
 
-![image](https://user-images.githubusercontent.com/67761888/152559640-851dccb8-a7a3-49e9-9cc5-19638c69c000.png)
+![image](https://github.com/aw-c/Mafioznik/assets/67761888/f82d6268-edf1-4d29-b8ac-bedee68c24db)
