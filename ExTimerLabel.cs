@@ -25,7 +25,7 @@ namespace Mafioznik
         {
             Time--;
             var Form = (Form1)Parent;
-            Form.TimerBar.Value = Time;
+            Form.TimerBar.Value = Math.Clamp(Time, 0, Form.TimerBar.Maximum);
             var parsedTime = int.Parse(Form.SoundOnTime.Text);
 
             if (Time == parsedTime || Time == 0)
