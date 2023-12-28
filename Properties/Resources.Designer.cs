@@ -77,5 +77,15 @@ namespace Mafioznik.Properties {
                 return ResourceManager.GetStream("ding", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon rqr {
+            get {
+                object obj = ResourceManager.GetObject("rqr", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

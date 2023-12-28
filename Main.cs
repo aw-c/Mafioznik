@@ -17,8 +17,6 @@ namespace Mafioznik
             Application.Run(new Form1());
             
         }
-        public static System.IO.Stream ClickSound = Properties.Resources.chord;
-        public static System.IO.Stream TimeSound = Properties.Resources.ding;
         public enum ROLES
         {
             CIT = 0,

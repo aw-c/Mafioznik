@@ -10,23 +10,30 @@ namespace Mafioznik
 {
     public class ExTimerLabel : Label
     {
-        public int time = 60;
-        public int maxvalue = 60;
-        public void SetTime(int s) {time = s; maxvalue = time; Text = time.ToString();}
+        public SoundPlayer Player = new SoundPlayer(Properties.Resources.chord);
+        private int _Time = 60;
+        public int Time { get { return _Time; } 
+            set 
+            {
+                _Time = value;
+                Text = value.ToString();
+            } 
+        }
+        public int MaxValue = 70;
         public System.Windows.Forms.Timer timer = new();
         public void Tick(object sender, EventArgs e)
         {
-            time -=1;
-            Text = time.ToString();
+            Time--;
             var Form = (Form1)Parent;
-            Form.TimerBar.Value = time > 100 ? 100 : time;
-            if (time == 6 || time == 0)
+            Form.TimerBar.Value = Time;
+            var parsedTime = int.Parse(Form.SoundOnTime.Text);
+
+            if (Time == parsedTime || Time == 0)
             {
-                Form.Print(time == 6 ? "На таймере остаётся 5 секунд" : "Время на таймере вышло");
-                Form.player.Stream = Core.ClickSound;
-                Form.player.Play();
+                Form.Print(Time == parsedTime ? $"На таймере остаётся {Time} секунд" : "Время на таймере вышло");
+                Player.Play();
             }
-            if (time < 1)
+            if (Time < 1)
                 timer.Stop();
         }
         public ExTimerLabel()
