@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Diagnostics.CodeAnalysis;
+using static Mafioznik.Core;
 
 namespace Mafioznik
 {
@@ -106,8 +107,23 @@ namespace Mafioznik
 
         private void ClearNotes(object sender, EventArgs e)
         {
-            NotesBox.Clear();
-            Print("Заметки были успешно очищены");
+            votelist.Items.Clear();
+            Print("Голосование было очищено");
+        }
+
+        private bool TryFindPlayer(int idx, [NotNullWhen(true)] out PlayerLabel? player)
+        {
+            player = null;
+
+            foreach (var item in player_holder.Items)
+                if (item is PlayerLabel playerLabel)
+                    if (playerLabel.VoteIndex == idx)
+                    {
+                        player = playerLabel;
+                        return true;
+                    }
+
+            return false;
         }
 
         private bool TryGetPlayer(object? o, [NotNullWhen(true)] out PlayerLabel? player)
@@ -194,9 +210,57 @@ namespace Mafioznik
             Print($"Таймеру было {separator} {toAdd} секунд");
         }
 
+        private void votefor_Click(object sender, EventArgs e)
+        {
+            if (TryGetPlayer(player_holder.SelectedItem, out var item))
+            {
+                if (item.VoteIndex == -1)
+                {
+                    item.VoteIndex = votelist.Items.Add(RebuildVoteName(item));
+                    return;
+                }
+                votelist.Items.RemoveAt(item.VoteIndex);
+                item.VoteIndex = -1;
+                item.Votes = 0;
+            }
+        }
+
+        private string RebuildVoteName(PlayerLabel player)
+        {
+            return $"Игрок {player.Index} [{player.Votes}]";
+        }
+
         private void DeselectItem(object sender, EventArgs e)
         {
             player_holder.SelectedItem = null;
+        }
+
+        private void votelist_DoubleClick(object sender, EventArgs e)
+        {
+            if (votelist.SelectedItem is null)
+                return;
+
+            if (TryFindPlayer(votelist.SelectedIndex, out var player))
+            {
+                /*if (e is MouseEventArgs mouseEvent)
+                    if (mouseEvent.Button != MouseButtons.Right)
+                        player.Votes++;
+                    else
+                        player.Votes--;*/
+
+                var currentVotes = int.Parse(Votes.Text);
+
+                if (currentVotes == player.Votes)
+                    return;
+
+                Print($"Игроку {player.Index} изменены голоса с {player.Votes} на {currentVotes}");
+
+                player.Votes = currentVotes;
+                Votes.Text = "0";
+                var lastIndex = player.VoteIndex;
+                votelist.Items.RemoveAt(lastIndex);
+                votelist.Items.Insert(lastIndex, RebuildVoteName(player));
+            }
         }
     }
 }

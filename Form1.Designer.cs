@@ -39,15 +39,16 @@ namespace Mafioznik
             button2 = new Button();
             button3 = new Button();
             TimerBar = new ProgressBar();
-            NotesBox = new RichTextBox();
             button4 = new Button();
-            TimerTime = new ExTimerLabel();
             player_holder = new ListBox();
             kill_player = new Button();
             add_foll = new Button();
             remove_foll = new Button();
             change_role = new Button();
             SoundOnTime = new TextBox();
+            votefor = new Button();
+            votelist = new ListBox();
+            Votes = new TextBox();
             SuspendLayout();
             // 
             // Shafle
@@ -80,7 +81,7 @@ namespace Mafioznik
             Debug.Margin = new Padding(4, 3, 4, 3);
             Debug.Name = "Debug";
             Debug.ReadOnly = true;
-            Debug.Size = new Size(472, 500);
+            Debug.Size = new Size(472, 503);
             Debug.TabIndex = 3;
             Debug.Text = "";
             Debug.WordWrap = false;
@@ -131,43 +132,17 @@ namespace Mafioznik
             TimerBar.TabIndex = 8;
             TimerBar.Click += OnTimerStop;
             // 
-            // NotesBox
-            // 
-            NotesBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            NotesBox.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            NotesBox.Location = new Point(10, 324);
-            NotesBox.Margin = new Padding(4, 3, 4, 3);
-            NotesBox.Name = "NotesBox";
-            NotesBox.Size = new Size(425, 180);
-            NotesBox.TabIndex = 10;
-            NotesBox.Text = "";
-            // 
             // button4
             // 
             button4.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.Location = new Point(216, 293);
+            button4.Location = new Point(245, 293);
             button4.Margin = new Padding(4, 3, 4, 3);
             button4.Name = "button4";
-            button4.Size = new Size(219, 30);
+            button4.Size = new Size(190, 30);
             button4.TabIndex = 11;
             button4.Text = "Очистить";
             button4.UseVisualStyleBackColor = true;
             button4.Click += ClearNotes;
-            // 
-            // TimerTime
-            // 
-            TimerTime.AutoSize = true;
-            TimerTime.BackColor = Color.Transparent;
-            TimerTime.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            TimerTime.Location = new Point(344, 82);
-            TimerTime.Margin = new Padding(4, 0, 4, 0);
-            TimerTime.Name = "TimerTime";
-            TimerTime.Size = new Size(21, 16);
-            TimerTime.TabIndex = 9;
-            TimerTime.Text = "60";
-            TimerTime.TextAlign = ContentAlignment.MiddleCenter;
-            TimerTime.Time = 60;
-            TimerTime.Click += OnTimerStop;
             // 
             // player_holder
             // 
@@ -220,10 +195,10 @@ namespace Mafioznik
             // change_role
             // 
             change_role.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            change_role.Location = new Point(100, 293);
+            change_role.Location = new Point(130, 293);
             change_role.Margin = new Padding(4, 3, 4, 3);
             change_role.Name = "change_role";
-            change_role.Size = new Size(114, 30);
+            change_role.Size = new Size(115, 30);
             change_role.TabIndex = 17;
             change_role.Text = "Change Role";
             change_role.UseVisualStyleBackColor = true;
@@ -239,12 +214,49 @@ namespace Mafioznik
             SoundOnTime.TabIndex = 18;
             SoundOnTime.Text = "6";
             // 
+            // votefor
+            // 
+            votefor.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            votefor.Location = new Point(100, 293);
+            votefor.Margin = new Padding(4, 3, 4, 3);
+            votefor.Name = "votefor";
+            votefor.Size = new Size(30, 30);
+            votefor.TabIndex = 19;
+            votefor.Text = "V";
+            votefor.UseVisualStyleBackColor = true;
+            votefor.Click += votefor_Click;
+            // 
+            // votelist
+            // 
+            votelist.AccessibleRole = AccessibleRole.None;
+            votelist.BackColor = SystemColors.Window;
+            votelist.FormattingEnabled = true;
+            votelist.ItemHeight = 15;
+            votelist.Location = new Point(10, 324);
+            votelist.Name = "votelist";
+            votelist.Size = new Size(425, 184);
+            votelist.TabIndex = 20;
+            votelist.DoubleClick += votelist_DoubleClick;
+            // 
+            // Votes
+            // 
+            Votes.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            Votes.Location = new Point(216, 79);
+            Votes.Margin = new Padding(4, 3, 4, 3);
+            Votes.Name = "Votes";
+            Votes.Size = new Size(50, 27);
+            Votes.TabIndex = 21;
+            Votes.Text = "0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(933, 519);
+            Controls.Add(Votes);
+            Controls.Add(votelist);
+            Controls.Add(votefor);
             Controls.Add(SoundOnTime);
             Controls.Add(change_role);
             Controls.Add(remove_foll);
@@ -252,8 +264,6 @@ namespace Mafioznik
             Controls.Add(kill_player);
             Controls.Add(player_holder);
             Controls.Add(button4);
-            Controls.Add(NotesBox);
-            Controls.Add(TimerTime);
             Controls.Add(TimerBar);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -283,7 +293,6 @@ namespace Mafioznik
         private Button button3;
         public ProgressBar TimerBar;
         public ExTimerLabel TimerTime;
-        private RichTextBox NotesBox;
         private Button button4;
         private ListBox player_holder;
         private Button kill_player;
@@ -291,6 +300,9 @@ namespace Mafioznik
         private Button remove_foll;
         private Button change_role;
         public TextBox SoundOnTime;
+        private Button votefor;
+        private ListBox votelist;
+        public TextBox Votes;
     }
 }
 

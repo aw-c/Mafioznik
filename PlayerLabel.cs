@@ -10,6 +10,8 @@ namespace Mafioznik
 {
     public class PlayerLabel
     {
+        public int VoteIndex = -1;
+        public int Votes = 0;
         public int Index = 0;
         public int Fools = 0;
         public Core.ROLES Role;
