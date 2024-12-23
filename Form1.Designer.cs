@@ -49,6 +49,7 @@ namespace Mafioznik
             votefor = new Button();
             votelist = new ListBox();
             Votes = new TextBox();
+            clearlogsbutton = new Button();
             SuspendLayout();
             // 
             // Shafle
@@ -248,12 +249,23 @@ namespace Mafioznik
             Votes.TabIndex = 21;
             Votes.Text = "0";
             // 
+            // clearlogsbutton
+            // 
+            clearlogsbutton.Location = new Point(916, 5);
+            clearlogsbutton.Name = "clearlogsbutton";
+            clearlogsbutton.Size = new Size(20, 503);
+            clearlogsbutton.TabIndex = 22;
+            clearlogsbutton.Text = "CLEAR";
+            clearlogsbutton.UseVisualStyleBackColor = true;
+            clearlogsbutton.Click += clearlogsbutton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(933, 519);
+            Controls.Add(clearlogsbutton);
             Controls.Add(Votes);
             Controls.Add(votelist);
             Controls.Add(votefor);
@@ -303,6 +315,7 @@ namespace Mafioznik
         private Button votefor;
         private ListBox votelist;
         public TextBox Votes;
+        private Button clearlogsbutton;
     }
 }
 

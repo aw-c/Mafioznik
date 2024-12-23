@@ -22,9 +22,15 @@ namespace Mafioznik
             InitializeComponent();
         }
 
+        private void ReloadText()
+        {
+            Debug.Clear();
+            Print("Mafioznik - Tool for Mafia WEB Game\nDeveloped by Alan Wake\nLogger activated");
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            Print("Mafioznik - Tool for Mafia WEB Game\nDeveloped by Alan Wake\nLogger activated");
+            ReloadText();
         }
         private PlayerLabel SearchNext(Random r)
         {
@@ -39,6 +45,7 @@ namespace Mafioznik
         }
         private void ShafleClick(object sender, EventArgs e)
         {
+            votelist.Items.Clear();
             player_holder.Items.Clear();
             player.Play();
             int persons;
@@ -261,6 +268,11 @@ namespace Mafioznik
                 votelist.Items.RemoveAt(lastIndex);
                 votelist.Items.Insert(lastIndex, RebuildVoteName(player));
             }
+        }
+
+        private void clearlogsbutton_Click(object sender, EventArgs e)
+        {
+            ReloadText();
         }
     }
 }
