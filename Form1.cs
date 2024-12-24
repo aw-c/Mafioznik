@@ -34,7 +34,7 @@ namespace Mafioznik
         }
         private PlayerLabel SearchNext(Random r)
         {
-            var i = r.Next(0, player_holder.Items.Count);
+            var i = r.Next(0, player_holder.Items.Count+1);
             foreach (PlayerLabel item in player_holder.Items)
             {
                 if (item.Index == i)
