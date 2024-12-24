@@ -50,6 +50,7 @@ namespace Mafioznik
             votelist = new ListBox();
             Votes = new TextBox();
             clearlogsbutton = new Button();
+            TimerTime = new ExTimerLabel();
             SuspendLayout();
             // 
             // Shafle
@@ -259,12 +260,25 @@ namespace Mafioznik
             clearlogsbutton.UseVisualStyleBackColor = true;
             clearlogsbutton.Click += clearlogsbutton_Click;
             // 
+            // TimerTime
+            // 
+            TimerTime.AutoSize = true;
+            TimerTime.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TimerTime.Location = new Point(344, 82);
+            TimerTime.Name = "TimerTime";
+            TimerTime.Size = new Size(21, 16);
+            TimerTime.TabIndex = 23;
+            TimerTime.Text = "60";
+            TimerTime.Time = 60;
+            TimerTime.Click += OnTimerStop;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(933, 519);
+            Controls.Add(TimerTime);
             Controls.Add(clearlogsbutton);
             Controls.Add(Votes);
             Controls.Add(votelist);
@@ -304,7 +318,6 @@ namespace Mafioznik
         private Button button2;
         private Button button3;
         public ProgressBar TimerBar;
-        public ExTimerLabel TimerTime;
         private Button button4;
         private ListBox player_holder;
         private Button kill_player;
@@ -316,6 +329,7 @@ namespace Mafioznik
         private ListBox votelist;
         public TextBox Votes;
         private Button clearlogsbutton;
+        private ExTimerLabel TimerTime;
     }
 }
 
