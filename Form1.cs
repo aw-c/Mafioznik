@@ -116,6 +116,13 @@ namespace Mafioznik
         {
             votelist.Items.Clear();
             Print("Голосование было очищено");
+            ResetPlayerVotes();
+        }
+
+        private void ResetPlayerVotes()
+        {
+            foreach (var item in player_holder.Items)
+                (item as PlayerLabel).VoteIndex = -1;
         }
 
         private bool TryFindPlayer(int idx, [NotNullWhen(true)] out PlayerLabel? player)
@@ -265,6 +272,10 @@ namespace Mafioznik
                 player.Votes = currentVotes;
                 Votes.Text = "0";
                 var lastIndex = player.VoteIndex;
+
+                if (lastIndex == -1)
+                    return;
+
                 votelist.Items.RemoveAt(lastIndex);
                 votelist.Items.Insert(lastIndex, RebuildVoteName(player));
             }
